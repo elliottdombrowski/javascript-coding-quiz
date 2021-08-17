@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+/* Declare Variables */
+
+:root {
+    --text: white;
+    --font: "Goudy Bookletter 1911", sans-serif;
+    --bold: bold;
+    --border: 1.5px solid black;
+    --border2: 1.5px solid white;
+    --border3: 3px solid white;
+    --buttonborder: 2px solid white;
+    --bg1: rgba(19, 19, 19, 0.76);
+    --bg2: #3e4657;
+    --bg3: rgba(0, 0, 0, 0.753);
+    --silver: #0f0f0f;
+    --silverop: #0f0f0fbe;
+    --mrg: 30px;
+}
+
+/* Element Selectors */
+
+main {
+    display: flex;
+    flex-direction: row wrap;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    font: var(--font);
+    font-weight: var(--bold);
+    text-align: center;
+}
+
+h1,
+h4 {
+    font-size: 200%;
+}
+
+h3 {
+    margin-top: 100px;
+}
+
+h3 {
+    font-size: 150%;
+}
+
+/* Class Selectors */
+
+.startbutton {
+    background-color: var(--bg1);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 25px;
+    color: var(--text);
+    font: var(--font);
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.startbutton:hover {
+    background-color: var(--bg2);
+    padding: 8px 23px;
+    border: 2px solid black;
+}
+
+.startbutton:active {
+    background-color: var(--text);
+    padding: 9px 24px;
+    border: 2px solid black;
+    color: black;
+}
+
+.choice {
+    background-color: var(--bg1);
+    border: none;
+    padding: 10px 25px;
+    margin: 5px 0px;
+    color: var(--text);
+    font: var(--font);
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.choice:hover {
+    background-color: var(--bg2);
+}
+
+.choice:active {
+    background-color: var(--text);
+    color: black;
+}
+
+.leftwrapper {
+    flex: 1 50%;
+    height: 100vh;
+    border: 2px solid black;
+} 
+
+.rightwrapper {
+    flex: 1 50%;
+    position: relative;
+    height: 100vh;
+    border: 2px solid black;
+}
+
+.choicewrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    bottom: 100px;
+}
+
+.choice {
+    background-color: var(--bg1);
+    border: none;
+    padding: 10px 25px;
+    color: var(--text);
+    font: var(--font);
+    font-size: 120%;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.header,
+.rightheader {
+    flex: 1 50%;
+    height: 100px;
+    margin-top: var(--mrg);
+}
+
+.instructions {
+    height: 100%;
+    padding: 50px 50px 40px 50px;
+    border-bottom: 3px solid black;
+}
+
+.scorewrapper {
+    display: flex;
+    flex-direction: row wrap;
+    height: 100%;
+}
+
+.buttonwrapper {
+    flex: 1 50%;
+    height: 100%;
+}
+
+.buttonflex {
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 75px;
+}
+
+.scoretimer {
+    flex: 1 50%;
+    height: 100%;
+    margin-top: 10px;
+}
+
+.scoretext,
+.timetext {
+    margin-top: var(--mrg);
+    font: var(--font);
+    font-weight: var(--bold);
+}
+
+.timer > p,
+.score > p {
+    text-align: center;
+    font-size: 200%;
+}
+
+.question {
+    margin-top: var(--mrg);
+}

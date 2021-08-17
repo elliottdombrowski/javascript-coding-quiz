@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>coding quiz!</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+
+  <body>
+      <main>
+          <div class="leftwrapper">
+              <div class="header">
+                <h1>Coding Quiz!</h1>
+                <h2>hit the start button to play.</h2> 
+              </div>
+
+              <div class="instructionswrapper">
+                  <div class="instructions">
+                    <p>Test your coding knowledge with this coding quiz!
+                     You will be given 60 seconds to answer 10 multi-choice questions-
+                     If you answer incorrectly, your time remaning will be penalized.</p>
+
+                     <h3>Hit the start button to begin!</h3>
+                   </div>
+
+                   <div class="scorewrapper">
+
+                        <div class="buttonwrapper">
+                            <div class="buttonflex">
+                                <button class="startbutton">Start!</button>
+                                <div class="winlosscontainer">
+                                    <p id="wintally"></p><br>
+                                    <p id="losstally"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="scoretimer">
+                            <div class="scoretext">
+                                <p>Your Score-</p>
+                                <div class="score"><p>--</p></div>
+                            </div>
+
+                            <div class="timetext">
+                                <p>Time Left-</p>
+                                <div class="timer"><p id="timerdisplay"></p></div>
+                            </div>
+                        </div>
+                   </div>
+              </div>
+          </div>
+
+          <!-- Quiz section -->
+          <div class="rightwrapper">
+              <div class="rightheader">
+                  <h4>Hit the start button to begin!</h4>
+                  <div class="winlossdisplay">
+                      <p class="wins"></p><br>
+                      <p class="losses"></p>
+                  </div>
+              </div>
+
+              <div class="questionwrapper">
+                  <div class="question" id="question"></div>
+                  
+                  <div class="choicewrapper">
+                    <button class="choice">Choice 1</button>
+                    <button class="choice">Choice 2</button>
+                    <button class="choice">Choice 3</button>
+                  </div>
+              </div>
+          </div>
+      </main>
+
+      <script src="assets/js/script.js"></script>
+  </body>
+  </html>
