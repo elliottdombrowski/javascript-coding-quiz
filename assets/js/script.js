@@ -2,9 +2,9 @@
 var countdownTimer = document.getElementById("timerdisplay");
 var winTally = document.getElementById("wintally");
 var lossTally = document.getElementById("losstally");
-var scoreCounter = document.querySelector(".score");
-var wins = document.getElementById("wins");
-var loss = document.getElementById("losses");
+var scoreCounter = document.getElementById("score");
+// var wins = document.getElementById("wins");
+// var loss = document.getElementById("losses");
 var winLoss = document.querySelector(".winlossdisplay");
 var questionBox = document.getElementById("questionbox");
 var button = document.querySelector(".choice");
@@ -22,17 +22,66 @@ var lossCount = 0;
 var questionNumber = 0;
 
 //Array for questions/answers
+// var questions = [
+//     {
+//         "question": "what should i be asking",
+//         "answer": "whatever.",
+//         "fakeanswer": "nothing.",
+//         "fakeanswer2": "nothing again."
+//     }, 
+//     {
+//         "question": "do you understand yet?",
+//         "answer": "no.",
+//         "fakeanswer": "yes.",
+//         "fakeanswer2": "yes again."
+//     },
+//     {
+//         "question": "What color is the sky?",
+//         "choices": ["red", "blue", "green"],
+//         "answer": 1
+//     }
+// ]
+
 var questions = [
     {
-        "question": "what should i be asking",
-        "answer": "whatever.",
-        "fakeanswer": "nothing.",
-        "fakeanswer2": "nothing again."
-    }, {
-        "question": "do you understand yet?",
-        "answer": "no.",
-        "fakeanswer": "yes.",
-        "fakeanswer2": "yes again."
+        "question": "placeholder question 1",
+        "choices": ["true", "false", "false"],
+        "answer": 0
+    },
+    {
+        "question": "placeholder question 2",
+        "choices": ["false", "false", "true"],
+        "answer": 2
+    },
+    {
+        "question": "placeholder question 3",
+        "choices": ["false", "true", "false"],
+        "answer": 1
+    },
+    {
+        "question": "placeholder question 4",
+        "choices": ["false", "true", "false"],
+        "answer": 1
+    },
+    {
+        "question": "placeholder question 5",
+        "choices": ["false", "true", "false"],
+        "answer": 1
+    },
+    {
+        "question": "placeholder question 6",
+        "choices": ["false", "true", "false"],
+        "answer": 1
+    },
+    {
+        "question": "placeholder question 7",
+        "choices": ["false", "true", "false"],
+        "answer": 1
+    },
+    {
+        "question": "placeholder question 8",
+        "choices": ["false", "true", "false"],
+        "answer": 1
     }
 ]
 
@@ -53,6 +102,7 @@ function startGame() {
     timerCount = 60;
     questionNumber = 0;
     start.disabled = true;
+    winTally.textContent = winCount;
     startTimer();
     askQuestion(questions[questionNumber]);
 }
@@ -78,9 +128,9 @@ function startTimer() {
 //Questions
 function askQuestion(q) {
     questionBox.textContent = q.question;
-    choiceButton1.textContent = q.answer;
-    choiceButton2.textContent = q.fakeanswer;
-    choiceButton3.textContent = q.fakeanswer2;
+    choiceButton1.textContent = q.choices[0];
+    choiceButton2.textContent = q.choices[1];
+    choiceButton3.textContent = q.choices[2];
     
     choiceButton1.addEventListener("click", () => {buttonClick(1, 1)})
     choiceButton2.addEventListener("click", () => {buttonClick(2, 1)})
@@ -91,10 +141,15 @@ function buttonClick(buttonNumber, correctNumber) {
     
     if(buttonNumber === correctNumber) {
         questionNumber++
+        rightAnswer();
         askQuestion(questions[questionNumber]);
     } else {
         timerCount = timerCount - 3;
     }
+}
+
+function rightAnswer() {
+    winCount++;
 }
 
 function clearQuestion() {

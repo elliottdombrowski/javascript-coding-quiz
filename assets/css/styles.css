@@ -15,8 +15,8 @@
     --border2: 1.5px solid white;
     --border3: 3px solid white;
     --buttonborder: 2px solid white;
-    --bg1: rgba(19, 19, 19, 0.76);
-    --bg2: #3e4657;
+    --bg1: rgb(0, 79, 168);
+    --bg2: rgba(0, 78, 168, 0.781);
     --bg3: rgba(0, 0, 0, 0.753);
     --silver: #0f0f0f;
     --silverop: #0f0f0fbe;
@@ -155,14 +155,15 @@ h3 {
 .buttonwrapper {
     flex: 1 50%;
     height: 100%;
+    margin-top: 10px;
 }
 
 .buttonflex {
     display: flex;
-    flex-direction: row wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 75px;
+    margin: 20px 75px;
 }
 
 .scoretimer {
@@ -186,4 +187,14 @@ h3 {
 
 .question {
     margin-top: var(--mrg);
+}
+
+.winlosscontainer {
+    width: 100%;
+    font-size: 110%;
+}
+
+.winlosscontainer > p {
+    margin-left: 20px;
+    text-align: left;
 }
