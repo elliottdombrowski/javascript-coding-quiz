@@ -3,16 +3,16 @@ var countdownTimer = document.getElementById("timerdisplay");
 var winTally = document.getElementById("wintally");
 var lossTally = document.getElementById("losstally");
 var scoreCounter = document.getElementById("score");
-// var wins = document.getElementById("wins");
-// var loss = document.getElementById("losses");
 var winLoss = document.querySelector(".winlossdisplay");
 var questionBox = document.getElementById("questionbox");
+var alertBox = document.getElementById("rightwrongalert");
+var scoreDisplay = document.getElementById("scoredisplay");
 var button = document.querySelector(".choice");
-
+var choiceWrapper = document.querySelector(".choicewrapper");
+var highScore = document.getElementById("formwrapper");
+var submit = document.getElementById("submitbutton");
 var start = document.querySelector(".startbutton");
-var choiceButton1 = document.getElementById("choice1");
-var choiceButton2 = document.getElementById("choice2");
-var choiceButton3 = document.getElementById("choice3");
+var scoreList = document.querySelector(".highscoredisplay");
 
 var timer;
 var timerCount;
@@ -21,26 +21,12 @@ var winCount = 0;
 var lossCount = 0;
 var questionNumber = 0;
 
-//Array for questions/answers
-// var questions = [
-//     {
-//         "question": "what should i be asking",
-//         "answer": "whatever.",
-//         "fakeanswer": "nothing.",
-//         "fakeanswer2": "nothing again."
-//     }, 
-//     {
-//         "question": "do you understand yet?",
-//         "answer": "no.",
-//         "fakeanswer": "yes.",
-//         "fakeanswer2": "yes again."
-//     },
-//     {
-//         "question": "What color is the sky?",
-//         "choices": ["red", "blue", "green"],
-//         "answer": 1
-//     }
-// ]
+//ARRAYS
+var choiceButtons = [
+    document.getElementById("choice1"),
+    document.getElementById("choice2"),
+    document.getElementById("choice3")
+];
 
 var questions = [
     {
@@ -85,15 +71,22 @@ var questions = [
     }
 ]
 
+var scoreBox = [
+    document.getElementById("score1"),
+    document.getElementById("score2"),
+    document.getElementById("score3"),
+    document.getElementById("score4")
+]
+
 //FUNCTIONS
 
 //Add event listener to start button
 start.addEventListener("click", startGame)
 
-// function init() {
-//     getWins();
-//     getLosses();
-// }
+function init() {
+    highScore.style.display = "none";
+    // submitScore()
+}
 
 //Start game.
 function startGame() {
@@ -102,7 +95,10 @@ function startGame() {
     timerCount = 60;
     questionNumber = 0;
     start.disabled = true;
+    choiceWrapper.style.display = "flex";
     winTally.textContent = winCount;
+    lossTally.textContent = lossCount;
+    highScore.style.display = "none";
     startTimer();
     askQuestion(questions[questionNumber]);
 }
@@ -110,17 +106,18 @@ function startGame() {
 //If startGame met, start timer
 function startTimer() {
     timer = setInterval(function() {
-        timerCount--;
-        countdownTimer.textContent = timerCount;
-        if (timerCount >= 0) {
-            if (isWin && timerCount > 0) {
-                clearInterval(timer);
-                winGame();
-            }
-        }
-        if (timerCount === 0) {
+        if(isWin && timerCount > 0) {
             clearInterval(timer);
-            loseGame();
+        } else {
+            timerCount--;
+            if(timerCount <= 0) {
+                timerCount = 0;
+            }
+            countdownTimer.textContent = timerCount;
+            if (timerCount <= 0) {
+                clearInterval(timer);
+                loseGame();
+            }
         }
     }, 1000);
 }
@@ -128,92 +125,119 @@ function startTimer() {
 //Questions
 function askQuestion(q) {
     questionBox.textContent = q.question;
-    choiceButton1.textContent = q.choices[0];
-    choiceButton2.textContent = q.choices[1];
-    choiceButton3.textContent = q.choices[2];
-    
-    choiceButton1.addEventListener("click", () => {buttonClick(1, 1)})
-    choiceButton2.addEventListener("click", () => {buttonClick(2, 1)})
-    choiceButton3.addEventListener("click", () => {buttonClick(3, 1)})
-}
 
-function buttonClick(buttonNumber, correctNumber) {
-    
-    if(buttonNumber === correctNumber) {
-        questionNumber++
-        rightAnswer();
-        askQuestion(questions[questionNumber]);
-    } else {
-        timerCount = timerCount - 3;
+    for (let i = 0; i < 3; i++) {
+        choiceButtons[i].textContent = q.choices[i];
+        if (q.answer === i) {
+            choiceButtons[i].addEventListener("click", rightAnswer)
+        } else { 
+            choiceButtons[i].addEventListener("click", wrongAnswer)
+        }
     }
 }
 
 function rightAnswer() {
-    winCount++;
+    clearQuestion()
+    console.log("right answer");
+    alertBox.textContent = "right!";
+    questionNumber++
+    
+    if (questionNumber < 1) {
+        askQuestion(questions[questionNumber]);
+    } else {
+        isWin = true;
+        winGame()
+    }
+}
+
+function wrongAnswer() {
+    console.log("wrong answer");
+    alertBox.textContent = "wrong.";
+    timerCount = timerCount - 3;
 }
 
 function clearQuestion() {
     console.log("questions cleared");
     questionBox.textContent = "";
-    choiceButton1.textContent = "";
-    choiceButton2.textContent = "";
-    choiceButton3.textContent = "";
+    
+    for (let i = 0; i < 3; i++) {
+        choiceButtons[i].textContent = "Choice " + (i+1);
+
+        choiceButtons[i].removeEventListener("click", rightAnswer);
+        choiceButtons[i].removeEventListener("click", wrongAnswer);
+    }
 }
 
 //If winGame condition met-
 function winGame() {
+    console.log("win count- ", winCount);
+    console.log("loss count- ", lossCount);
     console.log("you won. cool for you.");
-    winLoss.textContent = "you won. cool.";
+    scoreDisplay.textContent = "high score: " + timerCount;
+    alertBox.textContent = "you won. cool. enter your initials.";
     winCount++;
+    winTally.textContent = winCount;
+    lossTally.textContent = lossCount;
     start.disabled = false;
     clearQuestion();
     // setWin();
+    choiceWrapper.style.display = "none";
+    highScore.style.display = "block";
+    submit.addEventListener("click", submitScore);
 }
 
 //if loseGame condition met- 
 function loseGame() {
+    console.log("win count- ", winCount);
+    console.log("loss count- ", lossCount);
     console.log("you lost. sucks.");
-    winLoss.textContent = "fuck you get good.";
     lossCount++
+    winTally.textContent = winCount;
+    lossTally.textContent = lossCount;
+    alertBox.textContent = "you lost. sucks.";
     start.disabled = false;
+    choiceWrapper.style.display = "none";
     clearQuestion();
     // setLoss();
 }
 
-//if setWin condition met- 
-// function setWin() {
-//     wins.textContent = winCount;
-//     localStorage.setItem("winCount", winCount);
-// }
+function submitScore() {
+    submit.removeEventListener("click", submitScore);
+    // localStorage.getItem(winCount, lossCount);
+    localStorage.setItem(winCount, lossCount);
 
-// //if setLoss condition met-
-// function setLoss() {
-//     loss.textContent = lossCount;
-//     localStorage.setItem("lossCount", lossCount);
-// }
+    var initials = document.getElementById("inputform").value;
+    var scoreObj = {
+        "initials": initials,
+        "score": timerCount
+    }
+    var highScores;
 
-// function getWins() {
-//     var storedWins = localStorage.getItem("winCount");
-//     if (storedWins === null) {
-//         winCount = 0;
-//     } else {
-//         winCount = storedWins;
-//     }
-//     wins.textContent = winCount;
-// }
+    if (localStorage.getItem("highScores")) {
+        highScores = JSON.parse(localStorage.getItem("highScores"));
 
-// function getLosses() {
-//     var storedLosses = local.localStorage.getItem("loseCount");
-//     if (storedLosses === null) {
-//         lossCount = 0;
-//     } else {
-//         lossCount = storedLosses;
-//     }
-//     loss.textContent = lossCount;
-// }
+        if (!Array.isArray(highScores)) {
+            highScores = [];
+        }
+    } else {
+        highScores = [];
+    }
+    
+    highScores.push(scoreObj);
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 
+    highScores.sort((a, b) => {
+        return(b.score - a.score)
+    })
 
+    for (i = 0; i < 4; i++) {
+        if(i < highScores.length) {
+            scoreBox[i].textContent = highScores[i].initials + " , " + highScores[i].score;
+        }
+    }
 
+    console.log("High Scores: " + JSON.stringify(highScores));
+}
 
 //INITIALIZE
-// init()
+init()

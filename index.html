@@ -58,21 +58,32 @@
           <div class="rightwrapper">
               <div class="rightheader">
                   <h4>Hit the start button to begin!</h4>
-                  <div class="winlossdisplay">
-                      <!-- <p class="wins"></p><br>
-                      <p class="losses"></p> -->
-                  </div>
               </div>
 
               <div class="questionwrapper">
                   <div class="question"><p id="questionbox"></p></div>
-                  
+                  <div class="formwrapper" id="formwrapper">
+                        <div class="enterscoretext"><p id="scoredisplay"></p></div>
+                        <input id="inputform" placeholder="enter your initials.">
+                        <button class="submitbutton" id="submitbutton">submit high score</button>
+                        <div class="alert"><p id="rightwrongalert"></p></div>
+                        <div class="highscoredisplay"></div>
+                        <div class="highscorelist">
+                            <div id="score1"></div>
+                            <div id="score2"></div>
+                            <div id="score3"></div>
+                            <div id="score4"></div>
+                        </div>
+                  </div>
+              </div>
+
+            
+
                   <div class="choicewrapper">
                     <button class="choice" id="choice1">Choice 1</button>
                     <button class="choice" id="choice2">Choice 2</button>
                     <button class="choice" id="choice3">Choice 3</button>
                   </div>
-              </div>
           </div>
       </main>
 

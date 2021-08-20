@@ -185,8 +185,14 @@ h3 {
     font-size: 200%;
 }
 
-.question {
-    margin-top: var(--mrg);
+.question,
+.questionwrapper,
+.alert {
+    margin: var(--mrg) 0;
+}
+
+.questionwrapper {
+    border-bottom: var(--border);
 }
 
 .winlosscontainer {
