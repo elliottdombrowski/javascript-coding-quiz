@@ -75,13 +75,19 @@ var scoreBox = [
     document.getElementById("score1"),
     document.getElementById("score2"),
     document.getElementById("score3"),
-    document.getElementById("score4")
+    document.getElementById("score4"),
+    document.getElementById("score5"),
+    document.getElementById("score6"),
+    document.getElementById("score7"),
+    document.getElementById("score8"),
+    document.getElementById("score9"),
+    document.getElementById("score10")
 ]
 
-//FUNCTIONS
 
 //Add event listener to start button
 start.addEventListener("click", startGame)
+
 
 function init() {
     highScore.style.display = "none";
@@ -142,7 +148,7 @@ function rightAnswer() {
     alertBox.textContent = "right!";
     questionNumber++
     
-    if (questionNumber < 1) {
+    if (questionNumber < questions.length) {
         askQuestion(questions[questionNumber]);
     } else {
         isWin = true;
@@ -180,7 +186,6 @@ function winGame() {
     lossTally.textContent = lossCount;
     start.disabled = false;
     clearQuestion();
-    // setWin();
     choiceWrapper.style.display = "none";
     highScore.style.display = "block";
     submit.addEventListener("click", submitScore);
@@ -203,7 +208,6 @@ function loseGame() {
 
 function submitScore() {
     submit.removeEventListener("click", submitScore);
-    // localStorage.getItem(winCount, lossCount);
     localStorage.setItem(winCount, lossCount);
 
     var initials = document.getElementById("inputform").value;
@@ -230,7 +234,7 @@ function submitScore() {
         return(b.score - a.score)
     })
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 10; i++) {
         if(i < highScores.length) {
             scoreBox[i].textContent = highScores[i].initials + " , " + highScores[i].score;
         }

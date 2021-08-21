@@ -11,7 +11,7 @@
     --text: white;
     --font: "Goudy Bookletter 1911", sans-serif;
     --bold: bold;
-    --border: 1.5px solid black;
+    --border: 2px solid black;
     --border2: 1.5px solid white;
     --border3: 3px solid white;
     --buttonborder: 2px solid white;
@@ -28,6 +28,7 @@
 main {
     display: flex;
     flex-direction: row wrap;
+    background-color: var(--text);
 }
 
 h1,
@@ -56,6 +57,7 @@ h3 {
 /* Class Selectors */
 
 .startbutton {
+    margin: 0 10px;
     background-color: var(--bg1);
     border: none;
     border-radius: 50px;
@@ -66,16 +68,18 @@ h3 {
     cursor: pointer;
 }
 
-.startbutton:hover {
+.startbutton:hover,
+.submitbutton:hover {
     background-color: var(--bg2);
     padding: 8px 23px;
-    border: 2px solid black;
+    border: var(--border);
 }
 
-.startbutton:active {
+.startbutton:active,
+.submitbutton:active {
     background-color: var(--text);
-    padding: 9px 24px;
-    border: 2px solid black;
+    padding: 8px 23px;
+    border: var(--border);
     color: black;
 }
 
@@ -102,19 +106,43 @@ h3 {
 .leftwrapper {
     flex: 1 50%;
     height: 100vh;
-    border: 2px solid black;
+    border: var(--border);
 } 
 
 .rightwrapper {
     flex: 1 50%;
     position: relative;
     height: 100vh;
-    border: 2px solid black;
+    border: var(--border);
+}
+
+.inputwrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputform {
+    width: 300px;
+    height: 30px;
+}
+
+.submitbutton {
+    width: 300px;
+    height: 30px;
+    margin-top: 10px;
+    background-color: var(--bg1);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 25px;
+    color: var(--text);
+    font: var(--font);
+    cursor: pointer;
 }
 
 .choicewrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -123,13 +151,16 @@ h3 {
 }
 
 .choice {
+    height: 100px;
+    width: 150px;
+    margin: 15px;
     background-color: var(--bg1);
-    border: none;
     padding: 10px 25px;
     color: var(--text);
     font: var(--font);
     font-size: 120%;
     padding: 5px;
+    border-radius: 10px;
     border: 2px solid black;
 }
 
@@ -160,7 +191,7 @@ h3 {
 
 .buttonflex {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 20px 75px;
@@ -169,7 +200,7 @@ h3 {
 .scoretimer {
     flex: 1 50%;
     height: 100%;
-    margin-top: 10px;
+    margin-top: 8%;
 }
 
 .scoretext,
