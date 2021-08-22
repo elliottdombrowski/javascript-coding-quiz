@@ -142,7 +142,7 @@ h3 {
 
 .choicewrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -151,9 +151,9 @@ h3 {
 }
 
 .choice {
-    height: 100px;
-    width: 150px;
-    margin: 15px;
+    height: 75px;
+    width: 300px;
+    margin: 50px, 15px;
     background-color: var(--bg1);
     padding: 10px 25px;
     color: var(--text);
@@ -179,14 +179,15 @@ h3 {
 
 .scorewrapper {
     display: flex;
-    flex-direction: row wrap;
+    flex-direction: row;
     height: 100%;
 }
 
 .buttonwrapper {
     flex: 1 50%;
     height: 100%;
-    margin-top: 10px;
+    height: 100%;
+    margin-top: 12%;
 }
 
 .buttonflex {
@@ -212,8 +213,9 @@ h3 {
 
 .timer > p,
 .score > p {
-    text-align: center;
-    font-size: 200%;
+    text-align: left;
+    margin-left: 20px;
+    font-size: 120%;
 }
 
 .question,
@@ -234,4 +236,11 @@ h3 {
 .winlosscontainer > p {
     margin-left: 20px;
     text-align: left;
+}
+
+.score {
+    text-align: center;
+    background-color: var(--bg1);
+    color: var(--text);
+    font: var(--font);
 }
