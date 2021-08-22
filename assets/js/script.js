@@ -297,17 +297,19 @@ function submitScore() {
 //GET SCORE ON INIT
 function getScore() {
     //On Init, pull wins and loss values out of local storage.
-    winCount = localStorage.getItem("wins");
-    lossCount = localStorage.getItem("losses");
+        winCount = localStorage.getItem("wins");
+        lossCount = localStorage.getItem("losses");
 }
 
 //CLEAR SCORE
 function clearScore() {
-    //Clears local storage and page displays on "clear" button on click
+    //Clears local storage and page displays on "clear" button on 
+    console.log("Local storage cleared");
     localStorage.clear();
     winTally.textContent = "";
     lossTally.textContent = "";
     countdownTimer.textContent = "";
+    scoreBox.textContent = "";
 }
 
 //INITIALIZE
